@@ -1,0 +1,84 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+.top {
+    &-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    &-title {
+        position: relative;
+        float: left;
+        font-size: 3vw;
+        margin-bottom: -0.4em;
+        margin-top: -0.4em;
+        line-height: 32px;
+        font-weight: bold;
+        color: #3c3c3c;
+    }
+    &-title::before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        height: 2px;
+        background-color: green;
+        width: 100%;
+    }
+}
+.arrow {
+    &-text {
+        font-size: 2vw;
+        font-weight: bold;
+        text-shadow: 0.03em 0.03em 0.03em rgba(0,0,0,1);
+        margin-top: 10px !important;
+        margin-bottom: 0px !important;
+    }
+}
+.swiper {
+    &-flex-container {
+        display: flex;
+        margin-bottom: 5%;
+    }
+    
+    &-image-wrap {
+        margin: 10px 5px;
+    }
+    
+    &-image-wrap img {
+        // height: 100px;
+        // width: 200px;
+        width: auto;
+        max-height: 10%;
+        object-fit: cover;
+    }
+}
+.detail {
+    &-line {
+        margin-bottom: 1%;
+    }
+}
+td, th {
+    padding: 5px;
+}
+
+// .v-enter-active,
+// .v-leave-active {
+//   transition: transform 1000ms;
+// }
+
+// .v-enter-from,
+// .v-leave-to {
+//   transform: rotateY(90deg);
+// }
+
+.animate-enter-active,
+.animate-leave-active {
+    transition: opacity 1s;
+}
+.animate-enter,
+.animate-leave-active {
+    opacity: 0;
+}

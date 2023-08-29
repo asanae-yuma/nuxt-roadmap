@@ -1,0 +1,623 @@
+<template>
+    <div>
+        <transition-group appear
+            mode="out-in"
+            name="custom-classes-transition"
+            tag="div"
+            enter-active-class="animate__animated animate__lightSpeedInLeft" 
+            leave-active-class="animate__animated animate__lightSpeedOutRight"
+        >
+            <detail
+                v-for="(step, index) in steps" 
+                :key="step"
+                v-show="isActives[index]"
+                :area="details[index]"
+                :color="colors[index]"
+                :step="step"
+            />
+        </transition-group>
+    </div>
+</template>
+<script>
+import Detail from '../molecules/Detail.vue';
+
+export default {
+    props: {
+        activeIndex: Number,
+        isActives: Array
+    },
+    components: {
+        Detail
+    },
+    data() {
+        return {
+            steps: [
+                "Step1",
+                "Step2",
+                "Step3",
+                "Step4",
+                "Step5"
+            ],
+            colors: [
+                "rgba(93, 255, 93, 1)",
+                "rgba(0, 255, 255, 1)",
+                "rgba(30, 144, 255, 1)",
+                "rgba(238, 130, 238, 1)",
+                "rgba(255, 93, 93, 1)",
+            ],
+            details: [
+                {
+                    sql: {
+                        name: 'SQLのCRUD操作',
+                        detail: 'SQLでCREATE, SELECT, UPDATE, DELETEの基礎構文やテーブル結合、副問い合わせをマスターしよう！',
+                        books: [
+                            {
+                                name: 'スッキリわかるSQL入門',
+                                url: 'https://www.amazon.co.jp/dp/4295013390'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'はじめてのSQL ・データ分析入門 -データベースのデータをビジネスパーソンが現場で活用するためのSQL初心者向コース',
+                                url: 'https://www.udemy.com/course/standard-sql-for-beginners/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: 'Oracle MASTER Silver SQL',
+                                bounty: '30,000円'
+                            }
+                        ]
+                    },
+                    coding: {
+                        name: 'コーディング',
+                        detail: 'コーディングの基本構文や考え方を学んで、製造工程に携われる人材になろう！',
+                        books: [
+                            {
+                                name: '徹底攻略Java SE 11 Silver問題集',
+                                url: 'https://www.amazon.co.jp/dp/4295007625'
+                            },
+                            {
+                                name: '新・標準プログラマーズライブラリ なるほどなっとく C#入門',
+                                url: 'https://www.amazon.co.jp/dp/429710458X'
+                            },
+                            {
+                                name: 'スッキリわかるPython入門',
+                                url: 'https://www.amazon.co.jp/dp/4295006327'
+                            },
+                            {
+                                name: '徹底攻略Python 3 エンジニア認定',
+                                url: 'https://www.amazon.co.jp/dp/4295016055'
+                            },
+                        ],
+                        movies: [
+                            {
+                                name: '【Java-基礎】完全未経験からの基礎入門講座（丁寧解説/豊富な図解/ハンズオン/Java Silver試験対応）',
+                                url: 'https://www.udemy.com/course/uz-java-kiso/'
+                            },
+                            {
+                                name: '一週間で身につくC#言語',
+                                url: 'https://www.udemy.com/course/c-nmavhi/'
+                            },
+                            {
+                                name: '現役シリコンバレーエンジニアが教えるPython 3 入門 + 応用 +アメリカのシリコンバレー流コードスタイル',
+                                url: 'https://www.udemy.com/course/python-beginner/'
+                            },
+                        ],
+                        licenses: [
+                            {
+                                name: 'Oracle Java Silver SE11',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: 'Python3エンジニア認定基礎試験',
+                                bounty: '30,000円'
+                            }
+                        ]
+                    },
+                    git: {
+                        name: 'Git',
+                        detail: 'Gitの操作に慣れて、チーム開発の即戦力になろう！',
+                        books: [
+                            {
+                                name: 'はじめてでもできる GitとGitHubの教科書',
+                                url: 'https://www.amazon.co.jp/dp/481561539X'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'ちゃんと学ぶ、Git/GitHub・SourceTree講座',
+                                url: 'https://www.udemy.com/course/git-beginning/'
+                            }
+                        ]
+                    },
+                    debug: {
+                        name: 'デバッグ',
+                        detail: 'IDEのデバッグ機能を駆使して、ソースコードの処理を追えるようになろう！',
+                        webs: [
+                            {
+                                name: 'Eclipse デバッグの方法',
+                                url: 'https://itsakura.com/eclipse-debug'
+                            },
+                            {
+                                name: 'Visual Studioでのデバッグの方法をわかりやすく図解',
+                                url: 'https://zenn.dev/t_ibe/articles/a6520b27f9e065'
+                            }
+                        ]
+                    }
+                },
+                {
+                    automatic: {
+                        name: 'テスト自動化',
+                        detail: '自動テストのスクリプトを作成し、業務効率化ができるようになろう！',
+                        webs: [
+                            {
+                                name: '[初心者向け] JavaでSeleniumを動かす',
+                                url: 'https://qiita.com/tsukakei/items/41bc7f3827407f8f37e8'
+                            },
+                            {
+                                name: 'PostmanでAPIの動作確認 & テストする方法',
+                                url: 'https://www.wakuwakubank.com/posts/873-tool-postman/'
+                            },
+                            {
+                                name: 'Jestでテストを書こう！',
+                                url: 'https://tech.bitbank.cc/lets-test-by-jest/'
+                            },
+    
+                        ],
+                        movies: [
+                            {
+                                name: 'Pythonによるビジネスに役立つWebスクレイピング',
+                                url: 'https://www.udemy.com/course/python-web-scraping-with-beautifulsoup-selenium-requests/'
+                            },
+                            {
+                                name: 'はじめてのPostman（ポストマン）入門。HTTP通信やREST APIの基礎を学び、APIデバッグ手法の基礎を学ぼう',
+                                url: 'https://www.udemy.com/course/postman-api/'
+                            }
+                        ]
+                    }, 
+                    framework: {
+                        name: 'フレームワーク',
+                        detail: 'MVCを理解してWEBアプリケーションを作れるようになろう！',
+                        books: [
+                            {
+                                name: '後悔しないためのSpring Boot 入門書',
+                                url: 'https://www.amazon.co.jp/dp/4802092865'
+                            },
+                            {
+                                name: '実践Django Pythonによる本格Webアプリケーション開発',
+                                url: 'https://www.amazon.co.jp/dp/4798153958'
+                            }
+    
+                        ],
+                        movies: [
+                            {
+                                name: '誰でもわかる Java（Webアプリ開発 - Spring Framework -）',
+                                url: 'https://www.udemy.com/course/javaweb-spring-framework/'
+                            },
+                            {
+                                name: '【徹底的に解説！】Djangoの基礎をマスターして、3つのアプリを作ろう！',
+                                url: 'https://www.udemy.com/course/django-3app/'
+                            }
+                        ]
+                    },
+                    async: {
+                        name: '非同期処理',
+                        detail: '非同期処理を理解し、プログラム中で外部と通信を行おう！',
+                        webs: [
+                            {
+                                name: 'axios の導入と簡単な使い方',
+                                url: 'https://qiita.com/ksh-fthr/items/2daaaf3a15c4c11956e9'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'JavaScriptで学ぶWebアプリ開発の必須知識〜Node.js・Web API・Ajax・async/await〜',
+                                url: 'https://www.udemy.com/course/web-application-development-with-javascript/'
+                            }
+                        ]
+                    },
+                    thread: {
+                        name: '並列処理',
+                        detail: '並列処理を理解し、効率的な処理を構築しよう！',
+                        webs: [
+                            {
+                                name: '【Java入門】マルチスレッド(Threadクラス)の使い方総まとめ',
+                                url: 'https://www.sejuku.net/blog/26331'
+                            },
+                            {
+                                name: '【Java入門】マルチスレッド(Threadクラス)の使い方総まとめ',
+                                url: 'https://www.sejuku.net/blog/26331'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【Pythonプログラミング】並列処理の基本を解説！マルチスレッド・マルチプロセスをconcurrent futuresで実装！',
+                                url: 'https://www.youtube.com/watch?v=et-cDFbVkQw'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: 'Oracle Java Gold SE11',
+                                bounty: '50,000円'
+                            }
+                        ]
+                    },
+                },
+                {
+                    detailedDesign: {
+                        name: '詳細設計',
+                        detail: '詳細設計の役割を理解し、PGとしての考え方を身に着けよう！',
+                        books: [
+                            {
+                                name: '現場で役立つシステム設計の原則',
+                                url: 'https://www.amazon.co.jp/dp/477419087X'
+                            },
+                        ],
+                        webs: [
+                            {
+                                name: 'クラス図の書き方とは。初心者にもわかりやすく解説',
+                                url: 'https://cacoo.com/ja/blog/how-to-write-class-diagram/'
+                            },
+                            {
+                                name: 'シーケンス図とは？書き方やツールを初心者でも分かるように紹介',
+                                url: 'https://cacoo.com/ja/blog/what-is-sequence-diagram/'
+                            },
+                            {
+                                name: 'ロバストネス図を活用したシステム設計',
+                                url: 'https://thinkit.co.jp/article/13487'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【超実践】ビジネス要件分析・基本設計・詳細設計をやり抜く実践ワーク講座',
+                                url: 'https://www.udemy.com/course/business_requirement_analysis_and_system_design/'
+                            }
+                        ]
+                    },
+                    responsive: {
+                        name: 'レスポンシブ',
+                        detail: 'レスポンシブを理解し、画面サイズに応じてレイアウトを最適化してみよう！',
+                        books: [
+                            {
+                                name: 'Figma for UIデザイン',
+                                url: 'https://www.amazon.co.jp/dp/4798172952'
+                            },
+                            {
+                                name: 'Every Layout-モジュラーなレスポンシブデザインを実現するCSS設計論',
+                                url: 'https://www.amazon.co.jp/dp/486246517X'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'FigmaでレスポンシブWEBデザイン作り方！Figmaの基礎からWEBデザイン実践まで完全サポート',
+                                url: 'https://www.udemy.com/course/figmaresponsive/'
+                            },
+                            {
+                                name: '未経験からHTML、CSS をマスターして、WEBデザイナー・エンジニアを目指す　最高の実践コース',
+                                url: 'https://www.udemy.com/course/html5css3-b/'
+                            }
+                        ]
+                    },
+                    linux: {
+                        name: 'Linux',
+                        detail: '詳細設計の役割を理解し、PGとしての考え方を身に着けよう！',
+                        books: [
+                            {
+                                name: '［試して理解］Linuxのしくみ　―実験と図解で学ぶOS、仮想マシン、コンテナの基礎知識',
+                                url: 'https://www.amazon.co.jp/dp/429713148X'
+                            },
+                            {
+                                name: 'Linux教科書 LPICレベル1 Version5.0対応',
+                                url: 'https://www.amazon.co.jp/dp/4798160490'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'もう怖くないLinuxコマンド。手を動かしながらLinuxコマンドラインを5日間で身に付けよう',
+                                url: 'https://www.udemy.com/course/unscared_linux/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: 'LPIC-1',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: 'LPIC-2',
+                                bounty: '50,000円'
+                            },
+                            {
+                                name: 'LPIC-3',
+                                bounty: '100,000円'
+                            }
+                        ]
+                    },
+                    maintainability: {
+                        name: '保守性',
+                        detail: '保守性の高いコードの書き方を理解しよう！',
+                        webs: [
+                            {
+                                name: '【若手プログラマー向け】メンテナンス性の高いコードを書くための心得',
+                                url: 'https://qiita.com/gohandesuyo/items/4a15086e5f3c705d86aa'
+                            }
+                        ],
+                        books: [
+                            {
+                                name: 'リーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック',
+                                url: 'https://www.amazon.co.jp/dp/4873115655'
+                            }
+                        ]
+                    }
+                },
+                {
+                    basicDesign: {
+                        name: '基本設計',
+                        detail: '基本設計の役割を理解し、SEとしての考え方を身に着けよう！',
+                        books: [
+                            {
+                                name: '現場で役立つシステム設計の原則',
+                                url: 'https://www.amazon.co.jp/dp/477419087X'
+                            },
+                        ],
+                        webs: [
+                            {
+                                name: '若手プログラマー必読！５分で理解できるER図の書き方５ステップ',
+                                url: 'https://www.ntt.com/business/sdpf/knowledge/archive_50.html'
+                            },
+                            {
+                                name: '初めての画面設計書',
+                                url: 'https://note.com/xytam/n/n795be7e53640'
+                            },
+                            {
+                                name: 'DFD（データフロー図）ってなに？DFDの概要と書き方をあわせて紹介',
+                                url: 'https://cacoo.com/ja/blog/what-is-dfd'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【超実践】ビジネス要件分析・基本設計・詳細設計をやり抜く実践ワーク講座',
+                                url: 'https://www.udemy.com/course/business_requirement_analysis_and_system_design/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: '基本情報技術者試験',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: '応用情報技術者試験',
+                                bounty: '50,000円'
+                            },
+                            {
+                                name: 'データベーススペシャリスト試験',
+                                bounty: '100,000円'
+                            },
+                            {
+                                name: 'システムアーキテクト試験',
+                                bounty: '100,000円'
+                            }
+                        ]
+                    },
+                    cloud: {
+                        name: 'クラウド',
+                        detail: 'クラウドを活用し、楽にインフラ構築を行おう！',
+                        books: [
+                            {
+                                name: 'AWSの基本・仕組み・重要用語が全部わかる教科書',
+                                url: 'https://www.amazon.co.jp/dp/4815607850'
+                            },
+                            {
+                                name: 'AWS認定資格試験テキスト AWS認定ソリューションアーキテクト - アソシエイト',
+                                url: 'https://www.amazon.co.jp/dp/4815607389'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'AWS：ゼロから実践するAmazon Web Services。手を動かしながらインフラの基礎を習得',
+                                url: 'https://www.udemy.com/course/aws-and-infra/'
+                            },
+                            {
+                                name: '【SAA-C03版】これだけでOK！ AWS 認定ソリューションアーキテクト – アソシエイト試験突破講座',
+                                url: 'https://www.udemy.com/course/aws-associate/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: 'AWSソリューションアーキテクトアソシエイト',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: 'AWSソリューションアーキテクトプロフェッショナル',
+                                bounty: '50,000円'
+                            }
+                        ]
+                    },
+                    virtual: {
+                        name: '仮想環境',
+                        detail: '仮想環境を活用し、楽に環境の構築・共有を行おう！',
+                        books: [
+                            {
+                                name: '仕組みと使い方がわかる Docker&Kubernetesのきほんのきほん',
+                                url: 'https://www.amazon.co.jp/dp/4839972745'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '駆け出しエンジニアのためのDocker入門',
+                                url: 'https://www.udemy.com/course/docker-startup/'
+                            }
+                        ]
+                    },
+                    cicd: {
+                        name: 'CI/CD',
+                        detail: 'CI/CDを活用し、各工程で発生する作業を自動化しよう！',
+                        webs: [
+                            {
+                                name: '【入門】GitHub Actionsとは？概要やメリット、使用例まとめ',
+                                url: 'https://www.kagoya.jp/howto/it-glossary/develop/githubactions/'
+                            },
+                            {
+                                name: 'いまさらだけどCircleCIに入門したので分かりやすくまとめてみた',
+                                url: 'https://qiita.com/gold-kou/items/4c7e62434af455e977c2'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'GitHub Actionsで学ぶCI/CD入門―ビルド・デプロイの基本からAPI自動テスト・AWSへの自動デプロイまで',
+                                url: 'https://www.udemy.com/course/cicd-with-github-actions/'
+                            }
+                        ]
+                    }
+                },
+                {
+                    requirementDefinition: {
+                        name: '要件定義',
+                        detail: '要件定義の役割を理解し、管理者やビジネス側の考え方を身に着けよう！',
+                        books: [
+                            {
+                                name: '図解入門 よくわかる 最新 要求定義の基本と実践',
+                                url: 'https://www.amazon.co.jp/dp/4798068314'
+                            },
+                        ],
+                        webs: [
+                            {
+                                name: 'ユースケース図とは？',
+                                url: 'https://www.lucidchart.com/pages/ja/uml-use-case-diagram'
+                            },
+                            {
+                                name: '状態遷移図（ステートマシン図）とは？業務の流れを把握し効率化するためのポイントを解説',
+                                url: 'https://cacoo.com/ja/blog/what-is-state-machine-diagram/'
+                            },
+                            {
+                                name: 'アクティビティ図（フローチャート）の作り方・活用法を初心者向けに解説',
+                                url: 'https://cacoo.com/ja/blog/what-is-activity-diagram/'
+                            },
+                            {
+                                name: 'オブジェクト図とは何？その書き方と使用例も紹介',
+                                url: 'https://www.edrawsoft.com/jp/uml-object-diagram.html'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【超実践】ビジネス要件分析・基本設計・詳細設計をやり抜く実践ワーク講座',
+                                url: 'https://www.udemy.com/course/business_requirement_analysis_and_system_design/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: '基本情報技術者試験',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: '応用情報技術者試験',
+                                bounty: '50,000円'
+                            },
+                            {
+                                name: 'プロジェクトマネージャ試験',
+                                bounty: '100,000円'
+                            },
+                            {
+                                name: 'システムアーキテクト試験',
+                                bounty: '100,000円'
+                            }
+                        ]
+                    },
+                    network: {
+                        name: 'ネットワーク',
+                        detail: 'ネットワークの理解を深め、インフラに強くなろう！',
+                        books: [
+                            {
+                                name: 'イラスト図解式　この一冊で全部わかるネットワークの基本',
+                                url: 'https://www.amazon.co.jp/dp/4815617678'
+                            },
+                            {
+                                name: '徹底攻略 ネットワークスペシャリスト教科書 令和5年度',
+                                url: 'https://www.amazon.co.jp/dp/4295015121'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'ITエンジニアを目指すネットワーク基礎講座_初級編',
+                                url: 'https://www.udemy.com/course/nw_engineer/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: 'CCNA Routing and Switching',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: '基本情報技術者試験',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: '応用情報技術者試験',
+                                bounty: '50,000円'
+                            },
+                            {
+                                name: 'ネットワークスペシャリスト試験',
+                                bounty: '100,000円'
+                            }
+                        ]
+                    },
+                    security: {
+                        name: 'セキュリティ',
+                        detail: 'セキュリティの理解を深め、安全なアプリケーションを構築できるようになろう！',
+                        books: [
+                            {
+                                name: 'セキュリティ技術の教科書',
+                                url: 'https://www.amazon.co.jp/dp/4865752749'
+                            },
+                            {
+                                name: '情報処理教科書 情報処理安全確保支援士 2023年版',
+                                url: 'https://www.amazon.co.jp/dp/4798178128'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【情報セキュリティ】Ethical Hacking：ホワイトハッカー入門',
+                                url: 'https://www.udemy.com/course/ethical-hacking-jpn1/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: '基本情報技術者試験',
+                                bounty: '30,000円'
+                            },
+                            {
+                                name: '応用情報技術者試験',
+                                bounty: '50,000円'
+                            },
+                            {
+                                name: '情報処理安全確保支援士試験',
+                                bounty: '100,000円'
+                            },
+                            {
+                                name: '情報セキュリティマネジメント試験',
+                                bounty: '100,000円'
+                            }
+                        ]
+                    },
+                    seo: {
+                        name: 'SEO',
+                        detail: 'SEOを理解し、Webサイトを改善してみよう！',
+                        books: [
+                            {
+                                name: '現場のプロから学ぶ SEO技術バイブル',
+                                url: 'https://www.amazon.co.jp/dp/4839966001'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '【SEO対策 入門講座】Google検索でWebサイトを上位表示させるための基礎講座',
+                                url: 'https://www.udemy.com/course/seo-beginner-course/'
+                            }
+                        ]
+                    },
+                }
+            ]
+        }
+    }
+}
+</script>
