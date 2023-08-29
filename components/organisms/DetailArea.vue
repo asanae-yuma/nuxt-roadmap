@@ -70,8 +70,18 @@ export default {
                         ]
                     },
                     coding: {
-                        name: 'コーディング',
-                        detail: 'コーディングの基本構文や考え方を学んで、製造工程に携われる人材になろう！',
+                        name: 'コーディングとデバッグ',
+                        detail: 'コーディングとデバッグの基礎を学んで、製造工程に携われる人材になろう！',
+                        webs: [
+                            {
+                                name: 'Eclipse デバッグの方法',
+                                url: 'https://itsakura.com/eclipse-debug'
+                            },
+                            {
+                                name: 'Visual Studioでのデバッグの方法をわかりやすく図解',
+                                url: 'https://zenn.dev/t_ibe/articles/a6520b27f9e065'
+                            }
+                        ],
                         books: [
                             {
                                 name: '徹底攻略Java SE 11 Silver問題集',
@@ -131,17 +141,29 @@ export default {
                             }
                         ]
                     },
-                    debug: {
-                        name: 'デバッグ',
-                        detail: 'IDEのデバッグ機能を駆使して、ソースコードの処理を追えるようになろう！',
+                    test: {
+                        name: 'テスト仕様書',
+                        detail: 'テスト仕様書を書くときの考え方を学んで、現場業務に役立てよう！',
                         webs: [
                             {
-                                name: 'Eclipse デバッグの方法',
-                                url: 'https://itsakura.com/eclipse-debug'
+                                name: '新人が任されやすい単体テストとその仕様書の作成について徹底解説！',
+                                url: 'https://and-engineer.com/articles/YAUNwhAAACYAPpiD'
                             },
                             {
-                                name: 'Visual Studioでのデバッグの方法をわかりやすく図解',
-                                url: 'https://zenn.dev/t_ibe/articles/a6520b27f9e065'
+                                name: 'テスト仕様書の書き方',
+                                url: 'https://service.shiftinc.jp/column/8223/'
+                            }
+                        ],
+                        books: [
+                            {
+                                name: 'ソフトウェアテストの教科書',
+                                url: 'https://www.amazon.co.jp/dp/B093Q13V96'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: 'はじめてのソフトウェアテスト技法',
+                                url: 'https://www.udemy.com/course/software-test-design/'
                             }
                         ]
                     }
@@ -202,25 +224,13 @@ export default {
                         ]
                     },
                     async: {
-                        name: '非同期処理',
-                        detail: '非同期処理を理解し、プログラム中で外部と通信を行おう！',
+                        name: '非同期処理と並列処理',
+                        detail: '非同期処理と並列処理を理解し、プログラム中で外部と通信を行い効率的な処理を構築しよう！',
                         webs: [
                             {
                                 name: 'axios の導入と簡単な使い方',
                                 url: 'https://qiita.com/ksh-fthr/items/2daaaf3a15c4c11956e9'
-                            }
-                        ],
-                        movies: [
-                            {
-                                name: 'JavaScriptで学ぶWebアプリ開発の必須知識〜Node.js・Web API・Ajax・async/await〜',
-                                url: 'https://www.udemy.com/course/web-application-development-with-javascript/'
-                            }
-                        ]
-                    },
-                    thread: {
-                        name: '並列処理',
-                        detail: '並列処理を理解し、効率的な処理を構築しよう！',
-                        webs: [
+                            },
                             {
                                 name: '【Java入門】マルチスレッド(Threadクラス)の使い方総まとめ',
                                 url: 'https://www.sejuku.net/blog/26331'
@@ -232,6 +242,10 @@ export default {
                         ],
                         movies: [
                             {
+                                name: 'JavaScriptで学ぶWebアプリ開発の必須知識〜Node.js・Web API・Ajax・async/await〜',
+                                url: 'https://www.udemy.com/course/web-application-development-with-javascript/'
+                            },
+                            {
                                 name: '【Pythonプログラミング】並列処理の基本を解説！マルチスレッド・マルチプロセスをconcurrent futuresで実装！',
                                 url: 'https://www.youtube.com/watch?v=et-cDFbVkQw'
                             }
@@ -240,6 +254,34 @@ export default {
                             {
                                 name: 'Oracle Java Gold SE11',
                                 bounty: '50,000円'
+                            }
+                        ]
+                    },
+                    it: {
+                        name: 'IT全般の基礎知識',
+                        detail: 'ネットワーク、データベース、セキュリティなどIT全般の基本的な知識を身につけて、エンジニアとしての視野を広げよう！',
+                        webs: [
+                            {
+                                name: '基本情報技術者試験ドットコム（過去問道場）',
+                                url: 'https://www.fe-siken.com/fekakomon.php'
+                            }
+                        ],
+                        books: [
+                            {
+                                name: '【令和５年度】 いちばんやさしい 基本情報技術者　絶対合格の教科書＋出る順問題集',
+                                url: 'https://www.amazon.co.jp/dp/4815618410'
+                            }
+                        ],
+                        movies: [
+                            {
+                                name: '～始めから効率よく学ぶ～ 基本情報技術者試験 最速 合格講座',
+                                url: 'https://www.udemy.com/course/lerning-fe/'
+                            }
+                        ],
+                        licenses: [
+                            {
+                                name: '基本情報技術者試験',
+                                bounty: '30,000円'
                             }
                         ]
                     },

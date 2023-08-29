@@ -1,0 +1,23 @@
+[
+  {
+    "name": "index copy",
+    "path": "/index%20copy",
+    "component": "/src/pages/index copy.vue",
+    "chunkName": "pages/index copy",
+    "_name": "_0be58fec"
+  },
+  {
+    "name": "inspire",
+    "path": "/inspire",
+    "component": "/src/pages/inspire.vue",
+    "chunkName": "pages/inspire",
+    "_name": "_5c18d1e3"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/src/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_1479741b"
+  }
+]

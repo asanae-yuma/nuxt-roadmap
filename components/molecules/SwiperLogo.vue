@@ -25,7 +25,7 @@ export default {
         return {
             swiperOption: {
                 slidesPerView: 8,//スライドの枚数
-                speed: 1000,//スライドの切り替わりスピード
+                speed: 800,//スライドの切り替わりスピード
                 spaceBetween: 0,//各スライドの余白
                 centeredSlides: true,//スライダーを真ん中に
                 loop: true, //無限ループ
